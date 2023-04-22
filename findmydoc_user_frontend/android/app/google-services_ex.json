@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "957926978125",
+    "project_id": "find-my-doc-app",
+    "storage_bucket": "find-my-doc-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:957926978125:android:81b80e68c16bb019596204",
+        "android_client_info": {
+          "package_name": "com.example.findmydoc_user_frontend"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "957926978125-5feou0of5bmru8o508vlbkpk1e7a52rk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCwfF9EPgQDIzim5uOsJbGcboHJn-kT1B0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "957926978125-5feou0of5bmru8o508vlbkpk1e7a52rk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
