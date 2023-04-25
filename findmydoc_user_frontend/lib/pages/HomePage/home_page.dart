@@ -20,8 +20,12 @@ class HomePage extends StatelessWidget {
             physics: const NeverScrollableScrollPhysics(),
             shrinkWrap: true,
             children: [
-              UserFeelingFeedbackComponent(),
-              MyAppointmentsComponent()
+              const UserFeelingFeedbackComponent(),
+              const SizedBox(
+                height: 16,
+              ),
+              MyAppointmentsComponent(),
+              const NearbyDoctorsComponent(),
             ],
           ),
         )
@@ -145,7 +149,7 @@ class MyAppointmentsComponent extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            'My Appointments',
+            'My Appointments:',
             style: TextStyle(
                 fontSize: largeTextFontSize.toDouble(),
                 fontWeight: FontWeight.w500),
@@ -153,7 +157,7 @@ class MyAppointmentsComponent extends StatelessWidget {
 
           // Spacing
           const SizedBox(
-            height: 16,
+            height: 25,
           ),
 
           // Appointment cards
@@ -164,6 +168,7 @@ class MyAppointmentsComponent extends StatelessWidget {
                 return SizedBox(
                   height: 175,
                   child: ListView.builder(
+                    shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
                     itemCount:
                         snapshot.data != null ? snapshot.data!.length : 0,
@@ -171,11 +176,12 @@ class MyAppointmentsComponent extends StatelessWidget {
                       var dataSnippet = snapshot.data![index];
 
                       return AppointmentCard(
-                          doctorPFP: 'https://picsum.photos/32',
-                          doctorName: dataSnippet['doctor_name'],
-                          doctorSpeciality: dataSnippet['speciality'],
-                          location: 'location',
-                          dateTime: DateTime(2023, 4, 23, 20, 0, 0, 0, 0));
+                        doctorPFP: 'https://picsum.photos/32',
+                        doctorName: dataSnippet['doctor_name'],
+                        doctorSpeciality: dataSnippet['speciality'],
+                        location: 'location',
+                        dateTime: DateTime(2023, 4, 23, 20, 00, 0, 0, 0),
+                      );
                     },
                   ),
                 );
@@ -186,6 +192,53 @@ class MyAppointmentsComponent extends StatelessWidget {
               }
             },
           ),
+        ],
+      ),
+    );
+  }
+}
+
+class NearbyDoctorsComponent extends StatelessWidget {
+  const NearbyDoctorsComponent({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 16),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Nearby Doctors Today:',
+            style: TextStyle(
+                fontSize: largeTextFontSize.toDouble(),
+                fontWeight: FontWeight.w500),
+          ),
+
+          // Spacing
+          const SizedBox(
+            height: 25,
+          ),
+
+          FutureBuilder(
+            future: null,
+            builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                    scrollDirection: Axis.vertical,
+                    itemCount:
+                        snapshot.data != null ? snapshot.data!.length : 0,
+                    itemBuilder: (context, index) {
+                      return Container();
+                    });
+              } else if (snapshot.hasError) {
+                return Text('Error: ${snapshot.error}');
+              } else {
+                return const CircularProgressIndicator();
+              }
+            },
+          )
         ],
       ),
     );

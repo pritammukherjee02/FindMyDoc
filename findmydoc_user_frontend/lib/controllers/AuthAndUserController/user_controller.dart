@@ -32,8 +32,6 @@ class UserController extends GetxController {
         data.add(recordSnapshot.data());
       }
 
-      print(data);
-
       return data;
     } else {
       return [];

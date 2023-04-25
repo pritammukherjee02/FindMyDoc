@@ -28,65 +28,63 @@ class AppointmentCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(20),
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           //Doctor Info
-          SizedBox(
-            height: 50,
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                //Doctor profile picture
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    doctorPFP,
-                    height: 50,
-                    width: 50,
-                    fit: BoxFit.cover,
-                  ),
-                ),
-
-                // Spacing
-                const SizedBox(
-                  width: 10,
-                ),
-
-                // Doctor name and speciality
-                SizedBox(
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              //Doctor profile picture
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10),
+                child: Image.network(
+                  doctorPFP,
                   height: 50,
-                  child: Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          doctorName,
-                          style: TextStyle(
-                            fontSize: mediumBigTextFontSize.toDouble(),
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-
-                        // Spacing
-                        const SizedBox(
-                          height: 3,
-                        ),
-
-                        Text(
-                          doctorSpeciality,
-                          style: TextStyle(
-                            fontSize: bodyTextFontSize.toDouble(),
-                            fontWeight: FontWeight.w500,
-                            color: Colors.grey,
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
+                  width: 50,
+                  fit: BoxFit.cover,
                 ),
-              ],
-            ),
+              ),
+
+              // Spacing
+              const SizedBox(
+                width: 10,
+              ),
+
+              // Doctor name and speciality
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      doctorName,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: mediumBigTextFontSize.toDouble(),
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+
+                    // Spacing
+                    const SizedBox(
+                      height: 3,
+                    ),
+
+                    Text(
+                      doctorSpeciality,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: bodyTextFontSize.toDouble(),
+                        fontWeight: FontWeight.w500,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
           ),
 
           const Expanded(
@@ -99,65 +97,67 @@ class AppointmentCard extends StatelessWidget {
           // Location and Timing
           SizedBox(
             height: 60,
-            child: Expanded(
-              child: Column(
-                children: [
-                  // Location
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.location_on_outlined,
-                        size: largeTextFontSize.toDouble(),
+            child: Column(
+              children: [
+                // Location
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.location_on_outlined,
+                      size: largeTextFontSize.toDouble(),
+                    ),
+
+                    // Spacing
+                    const SizedBox(
+                      width: 5,
+                    ),
+
+                    Text(
+                      location,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: bodyTextFontSize.toDouble(),
+                        fontWeight: FontWeight.w500,
+                        color: secondaryThemeColor,
                       ),
+                    )
+                  ],
+                ),
 
-                      // Spacing
-                      const SizedBox(
-                        width: 5,
+                // Spacing
+                const SizedBox(
+                  height: 10,
+                ),
+
+                // Timing
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.access_time_rounded,
+                      size: largeTextFontSize.toDouble(),
+                    ),
+
+                    // Spacing
+                    const SizedBox(
+                      width: 5,
+                    ),
+
+                    Text(
+                      "${dateTime.weekday}, ${dateTime.hour}:${dateTime.minute}",
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: bodyTextFontSize.toDouble(),
+                        fontWeight: FontWeight.w500,
+                        color: secondaryThemeColor,
                       ),
-
-                      Text(
-                        location,
-                        style: TextStyle(
-                          fontSize: bodyTextFontSize.toDouble(),
-                          fontWeight: FontWeight.w500,
-                          color: secondaryThemeColor,
-                        ),
-                      )
-                    ],
-                  ),
-
-                  // Spacing
-                  const SizedBox(
-                    height: 10,
-                  ),
-
-                  // Timing
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.access_time_rounded,
-                        size: largeTextFontSize.toDouble(),
-                      ),
-
-                      // Spacing
-                      const SizedBox(
-                        width: 5,
-                      ),
-
-                      Text(
-                        "${dateTime.weekday}, ${dateTime.hour}:${dateTime.minute}",
-                        style: TextStyle(
-                          fontSize: bodyTextFontSize.toDouble(),
-                          fontWeight: FontWeight.w500,
-                          color: secondaryThemeColor,
-                        ),
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                    )
+                  ],
+                ),
+              ],
             ),
           )
         ],
