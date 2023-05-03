@@ -202,7 +202,7 @@ class CategoriesComponent extends StatelessWidget {
           categoryBtn('lib/assets/stomach.png', 'Gastroenterologist'),
           categoryBtn('lib/assets/general_pill.png', 'General Physician'),
           categoryBtn('lib/assets/brain.png', 'Neurologist'),
-          categoryBtn('lib/assets/psych.png', 'Psych'),
+          categoryBtn('lib/assets/psych.png', 'Psychology/\nPsychiatry'),
 
           // See More Button
           seeMoreBtn(),
@@ -223,7 +223,8 @@ class CategoriesComponent extends StatelessWidget {
         onTap: () {
           // Send the Category name that is tapped to the categories
           // page for it to fetch that specific data from the server
-          Get.toNamed(Routes.getCategoryRoute(), arguments: title);
+          Get.toNamed(Routes.getCategoryRoute(),
+              arguments: [title, assetLocation]);
         },
         child: Container(
           padding: const EdgeInsets.all(20),
