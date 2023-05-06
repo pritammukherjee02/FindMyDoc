@@ -1,5 +1,8 @@
+import Header from "@/components/Header"
 import "./globals.css"
 import { Inter } from "next/font/google"
+
+import Provider from "../components/provider"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -16,7 +19,15 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<body className={inter.className}>
+				<Provider>
+					{/* The Header will be visible across the entire application */}
+					{/* The Header should automatically reflect the Auth state */}
+					<Header />
+
+					<main className="flex min-h-screen">{children}</main>
+				</Provider>
+			</body>
 		</html>
 	)
 }
