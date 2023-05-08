@@ -1,7 +1,12 @@
 // Import the functions you need from the SDKs you need
+import { initFirestore } from "@next-auth/firebase-adapter"
 import { initializeApp } from "firebase/app"
 import "firebase/auth"
 import "firebase/firestore"
+var admin = require("firebase-admin")
+import { getFirestore } from "firebase/firestore"
+
+var serviceAccount = require("../service.json")
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -21,3 +26,8 @@ export const app = initializeApp(firebaseConfig)
 export const initFirebaseApp = () => {
 	return app
 }
+
+// Initialize Firestore
+export const db = initFirestore({
+	credential: admin.credential.cert(serviceAccount),
+})

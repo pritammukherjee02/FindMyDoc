@@ -1,7 +1,11 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
+import { FirestoreAdapter } from "@next-auth/firebase-adapter"
+
+import { db } from "../../../../../firebase/clientApp"
 
 const handler = NextAuth({
+	adapter: FirestoreAdapter(db),
 	providers: [
 		GoogleProvider({
 			clientId: process.env.GOOGLE_CLIENT_ID!,
@@ -11,6 +15,32 @@ const handler = NextAuth({
 	],
 	pages: {
 		// signIn: "/login",
+	},
+	callbacks: {
+		async signIn(params) {
+			const { email, id, image, name } = params.user
+			const usersRef = db.collection("clinic_users")
+			const docRef = usersRef.doc(email!)
+			const userRef = await docRef.get()
+			if (!userRef.exists) {
+				try {
+					await docRef.set({
+						name: name,
+						email: email,
+						uid: id,
+						image: image,
+						type: "clinic",
+					})
+				} catch (error) {
+					console.log(
+						"Error encountered while creating user at database: ",
+						error
+					)
+				}
+			}
+
+			return true
+		},
 	},
 })
 

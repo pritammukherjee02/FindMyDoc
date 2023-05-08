@@ -98,7 +98,7 @@ function NavbarProfileDropDown() {
 					{/* Sign Out Action button */}
 					<div
 						onClick={() => signOut()}
-						className="flex space-x-2 mt-2 items-center p-1 py-4 w-full h-7 cursor-pointer rounded-lg hover:bg-gray-200 hover:text-blue-600"
+						className="flex space-x-2 mt-2 items-center p-1 py-4 w-full h-7 cursor-pointer rounded-lg hover:bg-gray-200 hover:text-red-600"
 					>
 						<ArrowRightOnRectangleIcon className="h-5 text-center" />
 
