@@ -44,10 +44,15 @@ class MainCustomNavbar extends StatelessWidget {
 
           // Profile Picture
           // Profile image
-          CircleAvatar(
-            radius: 30,
-            child: ClipOval(
-              child: Image.network(userController.getUserProfileImageURL()!),
+          GestureDetector(
+            onTap: () {
+              authController.signOut();
+            },
+            child: CircleAvatar(
+              radius: 30,
+              child: ClipOval(
+                child: Image.network(userController.getUserProfileImageURL()!),
+              ),
             ),
           ),
         ],

@@ -8,7 +8,7 @@ import Link from "next/link"
 
 function Sidebar({ activePage }: { activePage: String }) {
 	return (
-		<div className="flex flex-col space-y-2 p-2 mt-5 max-w-[600px] xl:min-w-[250px]">
+		<div className="flex flex-col space-y-2 p-2 mt-5 max-w-[600px] lg:min-w-[250px]">
 			<SidebarRow
 				active={activePage == "Appointments"}
 				Icon={QueueListIcon}

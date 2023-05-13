@@ -1,10 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initFirestore } from "@next-auth/firebase-adapter"
 import { initializeApp } from "firebase/app"
-import "firebase/auth"
-import "firebase/firestore"
-var admin = require("firebase-admin")
-import { getFirestore } from "firebase/firestore"
+// var admin = require("firebase-admin")
+import { getFirestore, initializeFirestore } from "firebase/firestore"
 
 var serviceAccount = require("../service.json")
 
@@ -28,6 +26,9 @@ export const initFirebaseApp = () => {
 }
 
 // Initialize Firestore
-export const db = initFirestore({
-	credential: admin.credential.cert(serviceAccount),
-})
+// export const db = initFirestore({
+// 	credential: admin.credential.cert(serviceAccount),
+// })
+
+export const client_db = initializeFirestore(app, {})
+export const db = getFirestore(app)
